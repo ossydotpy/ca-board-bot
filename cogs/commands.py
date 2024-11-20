@@ -2,7 +2,7 @@
 import discord
 from discord.ext import commands
 from db_handler import DatabaseHandler
-from utils.funcs import is_valid_solana_address
+from utils.funcs import is_valid_contract_address
 
 
 
@@ -16,7 +16,7 @@ class ClipboardCog(commands.Cog):
     async def add_contract_manually(self, ctx, contract_address: str):
         """Manually add a contract to the server's clipboard"""
         
-        if not is_valid_solana_address(contract_address):
+        if not is_valid_contract_address(contract_address):
             await ctx.send("❌ Invalid Solana contract address.")
             return
 
