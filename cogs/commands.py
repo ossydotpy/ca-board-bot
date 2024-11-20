@@ -34,6 +34,10 @@ class ClipboardCog(commands.Cog):
         """Show contracts added by a specific user or yourself"""
         target_user = member or ctx.author
 
+        if target_user.guild.id != ctx.guild.id:
+            await ctx.send("❌ You can only check contracts for members in this server.")
+            return
+
         cursor = self.db.conn.cursor()
         cursor.execute('''
             SELECT contract_address, timestamp 
@@ -56,8 +60,11 @@ class ClipboardCog(commands.Cog):
 
         for address, timestamp in contracts:
             embed.add_field(
-                name="Contract", 
-                value=f"```\n{address}\n```", 
+                name="",
+                value=(
+                    f"```{address}```"
+                    f"**@:** {timestamp}\n"
+                ),
                 inline=False
             )
 

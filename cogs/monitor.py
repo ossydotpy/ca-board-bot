@@ -24,8 +24,7 @@ class MonitorCog(commands.Cog):
         contracts = self.extract_contract_info(message)
         for contract in contracts:
             if self.db.add_contract(
-                contract, 
-                None,  # Removed token name
+                contract,
                 message.guild.id, 
                 message.author.id
             ):
