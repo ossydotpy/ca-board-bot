@@ -34,7 +34,7 @@ class ClipboardCog(commands.Cog):
             await ctx.send("❌ Contract already exists in this server's clipboard.")
 
 
-    @commands.command(name='clipboard')
+    @commands.command(name='clipboard', aliases=['all', 'board', 'cas', 'clip'])
     async def show_clipboard(self, ctx):
         """Show recent contracts for the current server"""
         recent_contracts = self.db.get_recent_contracts(ctx.guild.id)
@@ -105,7 +105,7 @@ class ClipboardCog(commands.Cog):
             
         await ctx.send(embed=embed)
 
-    @commands.command(name='clear')
+    @commands.command(name='clear', aliases=['cls'])
     @commands.has_permissions(manage_messages=True)
     async def clear_clipboard(self, ctx):
         """Clear all contracts for this server (Moderator only)"""
@@ -121,7 +121,7 @@ class ClipboardCog(commands.Cog):
         
         await ctx.send("🧹 Server clipboard has been cleared.")
 
-    @commands.command(name='contractcount')
+    @commands.command(name='contractcount', aliases=['count'])
     async def contract_count(self, ctx):
         """Show the total number of contracts in the server's clipboard"""
         cursor = self.db.conn.cursor()

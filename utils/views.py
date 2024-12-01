@@ -29,7 +29,7 @@ class CallButton(Button):
             ):
                 await interaction.message.delete()
                 await interaction.response.send_message(
-                    f"{interaction.user.mention} has made a call for :  `{contract_address}`"
+                    f"{interaction.user.mention} has made a call for :  `{contract_address}`\n Use !cas or !all or !clipboard to view all calls in the server"
                 )
             else:
                 await interaction.message.delete()
