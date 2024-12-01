@@ -59,7 +59,6 @@ class CancelButton(Button):
 
 
 async def call_embed(ca, username, user_id):
-    print(user_id)
     embed = discord.Embed(
         title="🚨 Token Detected: Solana CA", description="", color=discord.Color.red()
     )

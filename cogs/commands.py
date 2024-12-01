@@ -14,7 +14,8 @@ class ClipboardCog(commands.Cog):
 
     @commands.command(name='ca')
     async def add_contract_manually(self, ctx, contract_address: str):
-        """Manually add a contract to the server's clipboard"""
+        """Manually add a contract to the server's clipboard
+        eg: !ca 71PjKbrg8VfdjtKzDZAMqfWpZKfaNNfbP7LoDUuMpump"""
 
         if not contract_address:
             await ctx.send('umm, no ca?')
@@ -57,7 +58,7 @@ class ClipboardCog(commands.Cog):
             embed.add_field(
                 name="",
                 value=(
-                    f"```{address}```"
+                    f"{idx}. [{address}](https://photon-sol.tinyastro.io/en/r/@noobie/{address})\n"
                     f"** By:** {username} ** {time_ago(timestamp)} **\n"
                 ),
                 inline=False
@@ -93,11 +94,11 @@ class ClipboardCog(commands.Cog):
             color=discord.Color.green()
         )
 
-        for address, timestamp in contracts:
+        for idx, (address, timestamp) in enumerate(contracts, start=1):
             embed.add_field(
                 name="",
                 value=(
-                    f"```{address}```"
+                    f"{idx}. [{address}](https://photon-sol.tinyastro.io/en/r/@noobie/{address})\n"
                     f"** {time_ago(timestamp)} **\n"
                 ),
                 inline=False
